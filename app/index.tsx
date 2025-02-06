@@ -39,9 +39,10 @@ const styles = StyleSheet.create({
       position: 'absolute',
       opacity: 0.5,
       borderColor: 'black',
-      borderWidth: 250,
-      borderLeftWidth: -200,
-      borderTopWidth: 140
+      borderLeftWidth: 375,
+      borderTopWidth: 165,
+      borderRightWidth: 375,
+      borderBottomWidth: 225
     },
     
     enlace: {
