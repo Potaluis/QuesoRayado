@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { Text, View, StyleSheet, ImageBackground} from "react-native";
+import { Text, View, StyleSheet, ImageBackground, Pressable} from "react-native";
 
 export default function Index() {
   return (
@@ -15,7 +15,7 @@ export default function Index() {
           <View style={styles.esquinaRectangulo4}></View>
           </View>
 
-          <Text style={styles.texto}>Muestra tu QR aquí</Text>
+          <Pressable><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
           </ImageBackground>
 
     
