@@ -5,7 +5,8 @@ export default function Index() {
   return (
       <ImageBackground source={require('../assets/images/screamer.png')} style={styles.pantalla}>
        <StatusBar hidden={true} />
-        <View style={styles.oscurecer}></View>
+        <View style={styles.oscurecer}>
+        </View>
         <View style={styles.linea1}>
           <View style={styles.esquinaRectangulo}></View>
           <View style={styles.esquinaRectangulo2}></View>
@@ -36,8 +37,11 @@ const styles = StyleSheet.create({
       width: '100%',
       height: '100%',
       position: 'absolute',
-      backgroundColor: 'black',
       opacity: 0.5,
+      borderColor: 'black',
+      borderWidth: 250,
+      borderLeftWidth: -200,
+      borderTopWidth: 140
     },
     
     enlace: {
