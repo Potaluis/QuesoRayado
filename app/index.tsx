@@ -1,10 +1,10 @@
 import { Link } from "expo-router";
-import { Text, View, StyleSheet} from "react-native";
+import { Text, View, StyleSheet, ImageBackground} from "react-native";
 
 export default function Index() {
   return (
-    <View
-      style={styles.pantalla}>
+
+      <ImageBackground source={require('../assets/images/screamer.png')} style={styles.pantalla}>
         <View style={styles.linea1}>
           <View style={styles.esquinaRectangulo}></View>
           <View style={styles.esquinaRectangulo2}></View>
@@ -16,7 +16,9 @@ export default function Index() {
           </View>
 
           <Text style={styles.texto}>Muestra tu QR aquí</Text>
-    </View>
+          </ImageBackground>
+
+    
   );
 }
 
@@ -25,7 +27,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundImage: './assets/images/screamer.png'
+        backgroundImage: require('../assets/images/screamer.png'),
+        height: '100%',
+        width: '100%',
     },
     enlace: {
         fontSize: 16,
