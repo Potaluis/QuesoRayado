@@ -1,10 +1,11 @@
 import { Link } from "expo-router";
-import { Text, View, StyleSheet, ImageBackground, Pressable} from "react-native";
+import { Text, View, StyleSheet, ImageBackground, Pressable, StatusBar} from "react-native";
 
 export default function Index() {
   return (
-
       <ImageBackground source={require('../assets/images/screamer.png')} style={styles.pantalla}>
+       <StatusBar hidden={true} />
+        <View style={styles.oscurecer}></View>
         <View style={styles.linea1}>
           <View style={styles.esquinaRectangulo}></View>
           <View style={styles.esquinaRectangulo2}></View>
@@ -31,18 +32,27 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
     },
+    oscurecer:{
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      backgroundColor: 'black',
+      opacity: 0.5,
+    },
+    
     enlace: {
         fontSize: 16,
         textDecorationLine: 'underline',
         color: 'blue'
     },
     texto:{
-      backgroundColor: 'red',
+      backgroundColor: '#434CB2',
       paddingVertical: 10,
       paddingHorizontal: 25,
       color: 'white',
       fontWeight: 'bold',
-      borderRadius: 50
+      borderRadius: 50,
+      fontSize: 30
     },
     linea1:{
       flexDirection: 'row'
@@ -51,7 +61,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row'
     },
     esquinaRectangulo:{
-      borderColor: 'red',
+      borderColor: 'white',
       borderLeftWidth: 5,
       borderTopWidth: 5,
       width: 50,
@@ -59,7 +69,7 @@ const styles = StyleSheet.create({
       margin: 75
       },
       esquinaRectangulo2:{
-        borderColor: 'red',
+        borderColor: 'white',
         borderLeftWidth: 5,
         borderTopWidth: 5,
         width: 50,
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
         margin: 75
       },
       esquinaRectangulo3:{
-        borderColor: 'red',
+        borderColor: 'white',
         borderLeftWidth: 5,
         borderTopWidth: 5,
         width: 50,
@@ -78,7 +88,7 @@ const styles = StyleSheet.create({
 
         },
         esquinaRectangulo4:{
-          borderColor: 'red',
+          borderColor: 'white',
           borderLeftWidth: 5,
           borderTopWidth: 5,
           width: 50,
