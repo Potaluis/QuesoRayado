@@ -1,7 +1,25 @@
 import { Link } from "expo-router";
+import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, ImageBackground, Pressable, StatusBar} from "react-native";
+import { Camera, useCameraPermissions,CameraView} from 'expo-camera';
+
 
 export default function Index() {
+
+  const [permission,requestPermission] = useCameraPermissions();
+  const [scanned,setScanned] = useState(false);
+
+  useEffect(()=>{
+    (async()=>{
+      const {status} = await Camera.requestCameraPermissionsAsync()
+
+      if(status  !== 'granted'){
+        alert('Desculpe, precisamos da permissão da câmera para fazer isso funcionar!');
+      }
+
+    })()
+  },[])
+
   return (
       <ImageBackground source={require('../assets/images/screamer.png')} style={styles.pantalla}>
        <StatusBar hidden={true} />
