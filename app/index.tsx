@@ -1,8 +1,13 @@
 import { Link } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, View, StyleSheet, ImageBackground, Pressable, StatusBar} from "react-native";
+import { Text, View, StyleSheet, Pressable, StatusBar, Alert, Button} from "react-native";
 import { Camera, useCameraPermissions,CameraView} from 'expo-camera';
 
+
+type Prop = {
+  type: string;
+  data: string;
+};
 
 export default function Index() {
 
@@ -14,15 +19,43 @@ export default function Index() {
       const {status} = await Camera.requestCameraPermissionsAsync()
 
       if(status  !== 'granted'){
-        alert('Desculpe, precisamos da permissão da câmera para fazer isso funcionar!');
+        alert('No tienes permisos');
       }
 
     })()
   },[])
 
+
+  const handleBarCodeScanned = ({ type, data }: Prop) => {
+    setScanned(true);
+    Alert.alert(
+      `Código ${type} Scaneado`, 
+      `Datos: ${data}`,      
+      [
+        {
+          text: 'OK',      
+          onPress: () => setScanned(false),  
+        }
+      ],
+      { cancelable: false } 
+    );
+};
+
+
+if (!permission?.granted) {
   return (
-      <ImageBackground source={require('../assets/images/screamer.png')} style={styles.pantalla}>
-       <StatusBar hidden={true} />
+    <View style={styles.container}>
+      <Text style={styles.permissionText}>Permiso aceptado</Text>
+      <Button title="Solicitar Permiso" onPress={requestPermission} />
+    </View>
+  );
+}
+
+  return (
+  <CameraView
+      style={styles.pantalla}
+      onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+    >       <StatusBar hidden={true} />
         <View style={styles.oscurecer}>
         </View>
         <View style={styles.linea1}>
@@ -36,13 +69,23 @@ export default function Index() {
           </View>
 
           <Pressable><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
-          </ImageBackground>
-
+    </CameraView>
     
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  permissionText: {
+    fontSize: 18,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
     pantalla: {
         flex: 1,
         justifyContent: "center",
