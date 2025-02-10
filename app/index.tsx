@@ -98,10 +98,14 @@ const styles = StyleSheet.create({
     oscurecer:{
       width: '100%',
       height: '100%',
+      borderRadius: 50,
       position: 'absolute',
       opacity: 0.5,
       borderColor: 'black',
-      borderWidth: 10,
+      borderWidth: 250,
+      transform: [{translateY: -50}],
+      borderLeftWidth: 500,
+      borderRightWidth: 500
     },
     
     enlace: {
