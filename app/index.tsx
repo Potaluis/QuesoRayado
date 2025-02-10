@@ -13,7 +13,7 @@ export default function Index() {
 
   const [permission,requestPermission] = useCameraPermissions();
   const [scanned,setScanned] = useState(false);
-  const [facing, setFacing] = useState<CameraType>('front');
+  const [facing] = useState<CameraType>('front');
 
 
   useEffect(()=>{
