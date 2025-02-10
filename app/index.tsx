@@ -66,8 +66,14 @@ if (!permission?.granted) {
       <View style={styles.filacentral}>
       <View style={styles.oscuro} />
       <View style={styles.ventana}>
+          </View>
+          <View style={styles.oscuro} />
 
-        <View style={styles.linea1}>
+          </View>
+          <View style={styles.oscuro} />
+          </View>
+
+          <View style={styles.linea1}>
           <View style={styles.esquinaRectangulo}></View>
           <View style={styles.esquinaRectangulo2}></View>
           </View>
@@ -75,12 +81,6 @@ if (!permission?.granted) {
           <View style={styles.linea2}>
           <View style={styles.esquinaRectangulo3}></View>
           <View style={styles.esquinaRectangulo4}></View>
-          </View>
-          </View>
-          <View style={styles.oscuro} />
-
-          </View>
-          <View style={styles.oscuro} />
           </View>
 
           <Pressable style={styles.boton}><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         color: 'blue'
     },
     boton: {
-      marginTop: 450
+      marginTop: 20
     },
     texto:{
       backgroundColor: '#434CB2',
@@ -159,14 +159,15 @@ const styles = StyleSheet.create({
     linea1:{
       flexDirection: 'row',
       marginTop: -100,
-      transform: [{translateX: (-85)}, {translateY: (14)}]
+      transform: [{translateY: 85}]
     },
     linea2:{
       flexDirection: 'row',
-      transform: [{translateX: (-85)}, {translateY: (14)}]
+      transform: [{translateY: 87}]
+
     },
     esquinaRectangulo:{
-      borderColor: 'red',
+      borderColor: 'white',
       borderLeftWidth: 5,
       borderTopWidth: 5,
       width: 50,
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
       margin: 75
       },
       esquinaRectangulo2:{
-        borderColor: 'red',
+        borderColor: 'white',
         borderLeftWidth: 5,
         borderTopWidth: 5,
         width: 50,
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
         transform: [{rotate: '90deg'}],
       },
       esquinaRectangulo3:{
-        borderColor: 'red',
+        borderColor: 'white',
         borderLeftWidth: 5,
         borderTopWidth: 5,
         width: 50,
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
 
         },
         esquinaRectangulo4:{
-          borderColor: 'red',
+          borderColor: 'white',
           borderLeftWidth: 5,
           borderTopWidth: 5,
           width: 50,
