@@ -70,7 +70,7 @@ if (!permission?.granted) {
           <View style={styles.esquinaRectangulo4}></View>
           </View>
 
-          <Pressable><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
+          <Pressable style={styles.boton}><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
     </CameraView>
     
   );
@@ -112,6 +112,9 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         color: 'blue'
     },
+    boton: {
+      marginTop: -50
+    },
     texto:{
       backgroundColor: '#434CB2',
       paddingVertical: 10,
@@ -120,13 +123,13 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       borderRadius: 50,
       fontSize: 25,
-      transform: [{translateY: -50}],
     },
     linea1:{
-      flexDirection: 'row'
+      flexDirection: 'row',
+      marginTop: -100
     },
     linea2:{
-      flexDirection: 'row'
+      flexDirection: 'row',
     },
     esquinaRectangulo:{
       borderColor: 'white',
