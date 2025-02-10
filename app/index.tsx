@@ -1,4 +1,3 @@
-import { Link } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Pressable, StatusBar, Alert, Button} from "react-native";
 import { Camera, useCameraPermissions,CameraView, CameraType} from 'expo-camera';
