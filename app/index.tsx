@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
       color: 'white',
       fontWeight: 'bold',
       borderRadius: 50,
-      fontSize: 30
+      fontSize: 25,
+      transform: [{translateY: -50}],
     },
     linea1:{
       flexDirection: 'row'
