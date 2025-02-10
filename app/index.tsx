@@ -73,6 +73,9 @@ if (!permission?.granted) {
           <View style={styles.oscuro} />
           </View>
 
+          <Pressable style={styles.boton}><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
+
+        
           <View style={styles.linea1}>
           <View style={styles.esquinaRectangulo}></View>
           <View style={styles.esquinaRectangulo2}></View>
@@ -83,7 +86,6 @@ if (!permission?.granted) {
           <View style={styles.esquinaRectangulo4}></View>
           </View>
 
-          <Pressable style={styles.boton}><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
     </CameraView>
     
   );
@@ -98,14 +100,14 @@ const styles = StyleSheet.create({
   },
   oscuro: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)', // Fondo semi-transparente
+    backgroundColor: 'rgba(0,0,0,0.6)',
   },
   filacentral: {
     flexDirection: 'row',
-    height: 230, // Altura de la ventana
+    height: 230, 
   },
   ventana: {
-    width: 230, // Ancho de la ventana
+    width: 230, 
     height: '100%',
     justifyContent: 'space-between',
   },
@@ -145,7 +147,8 @@ const styles = StyleSheet.create({
         color: 'blue'
     },
     boton: {
-      marginTop: 20
+      marginTop: -125,
+      transform: [{translateY: 50}]
     },
     texto:{
       backgroundColor: '#434CB2',
