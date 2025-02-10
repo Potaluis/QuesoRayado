@@ -13,19 +13,19 @@ export default function Index() {
   const [permission,requestPermission] = useCameraPermissions();
   const [scanned,setScanned] = useState(false);
   const [facing] = useState<CameraType>('front');
-
+  /*
 
   useEffect(()=>{
     (async()=>{
       const {status} = await Camera.requestCameraPermissionsAsync()
 
       if(status  !== 'granted'){
-        alert('No tienes permisos');
+        const {status} = await Camera.requestCameraPermissionsAsync()
       }
 
     })()
   },[])
-
+*/
 
   const handleBarCodeScanned = ({ type, data }: Prop) => {
     setScanned(true);
@@ -42,7 +42,7 @@ export default function Index() {
     );
 };
 
-
+/*
 if (!permission?.granted) {
   return (
     <View style={styles.container}>
@@ -50,16 +50,23 @@ if (!permission?.granted) {
       <Button title="Solicitar Permiso" onPress={requestPermission} />
     </View>
   );
-}
+}*/
 
   return (
   <CameraView
       style={styles.pantalla}
       facing={facing}
-      onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
-    >       <StatusBar hidden={true} />
-        <View style={styles.oscurecer}>
-        </View>
+      onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}>       
+      <StatusBar hidden={true} />
+
+      <View style={styles.overlay}>
+
+        <View style={styles.oscuro} />
+
+      <View style={styles.filacentral}>
+      <View style={styles.oscuro} />
+      <View style={styles.ventana}>
+
         <View style={styles.linea1}>
           <View style={styles.esquinaRectangulo}></View>
           <View style={styles.esquinaRectangulo2}></View>
@@ -69,6 +76,12 @@ if (!permission?.granted) {
           <View style={styles.esquinaRectangulo3}></View>
           <View style={styles.esquinaRectangulo4}></View>
           </View>
+          </View>
+          <View style={styles.oscuro} />
+
+          </View>
+          <View style={styles.oscuro} />
+          </View>
 
           <Pressable style={styles.boton}><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
     </CameraView>
@@ -77,6 +90,25 @@ if (!permission?.granted) {
 }
 
 const styles = StyleSheet.create({
+  overlay: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+  },
+  oscuro: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.6)', // Fondo semi-transparente
+  },
+  filacentral: {
+    flexDirection: 'row',
+    height: 230, // Altura de la ventana
+  },
+  ventana: {
+    width: 230, // Ancho de la ventana
+    height: '100%',
+    justifyContent: 'space-between',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -95,26 +127,25 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
     },
-    oscurecer:{
-      width: '100%',
+    oscurecer: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       height: '100%',
-      borderRadius: 50,
-      position: 'absolute',
-      opacity: 0.5,
-      borderColor: 'black',
-      borderWidth: 250,
-      transform: [{translateY: -50}],
-      borderLeftWidth: 500,
-      borderRightWidth: 500
+      width: '100%',
+      borderColor: 'red',
+      borderWidth: 1,
+      backgroundColor: 'green',
+      overflow: 'hidden'
     },
-    
+
     enlace: {
         fontSize: 16,
         textDecorationLine: 'underline',
         color: 'blue'
     },
     boton: {
-      marginTop: -50
+      marginTop: 450
     },
     texto:{
       backgroundColor: '#434CB2',
@@ -127,13 +158,15 @@ const styles = StyleSheet.create({
     },
     linea1:{
       flexDirection: 'row',
-      marginTop: -100
+      marginTop: -100,
+      transform: [{translateX: (-85)}, {translateY: (14)}]
     },
     linea2:{
       flexDirection: 'row',
+      transform: [{translateX: (-85)}, {translateY: (14)}]
     },
     esquinaRectangulo:{
-      borderColor: 'white',
+      borderColor: 'red',
       borderLeftWidth: 5,
       borderTopWidth: 5,
       width: 50,
@@ -141,16 +174,16 @@ const styles = StyleSheet.create({
       margin: 75
       },
       esquinaRectangulo2:{
-        borderColor: 'white',
+        borderColor: 'red',
         borderLeftWidth: 5,
         borderTopWidth: 5,
         width: 50,
         height: 50,
+        margin: 75,
         transform: [{rotate: '90deg'}],
-        margin: 75
       },
       esquinaRectangulo3:{
-        borderColor: 'white',
+        borderColor: 'red',
         borderLeftWidth: 5,
         borderTopWidth: 5,
         width: 50,
@@ -160,7 +193,7 @@ const styles = StyleSheet.create({
 
         },
         esquinaRectangulo4:{
-          borderColor: 'white',
+          borderColor: 'red',
           borderLeftWidth: 5,
           borderTopWidth: 5,
           width: 50,
