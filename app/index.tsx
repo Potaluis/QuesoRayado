@@ -1,7 +1,7 @@
 import { Link } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Pressable, StatusBar, Alert, Button} from "react-native";
-import { Camera, useCameraPermissions,CameraView} from 'expo-camera';
+import { Camera, useCameraPermissions,CameraView, CameraType} from 'expo-camera';
 
 
 type Prop = {
@@ -13,6 +13,8 @@ export default function Index() {
 
   const [permission,requestPermission] = useCameraPermissions();
   const [scanned,setScanned] = useState(false);
+  const [facing, setFacing] = useState<CameraType>('front');
+
 
   useEffect(()=>{
     (async()=>{
@@ -54,6 +56,7 @@ if (!permission?.granted) {
   return (
   <CameraView
       style={styles.pantalla}
+      facing={facing}
       onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
     >       <StatusBar hidden={true} />
         <View style={styles.oscurecer}>
