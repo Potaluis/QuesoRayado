@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Pressable, StatusBar, Alert, Button} from "react-native";
 import { Camera, useCameraPermissions,CameraView, CameraType} from 'expo-camera';
+import { GlobalStyles, media600 } from "@/app/themes/GlobalStyles";
+
+
 
 
 type Prop = {
@@ -53,156 +56,34 @@ if (!permission?.granted) {
 }*/
 
   return (
-  <CameraView
-      style={styles.pantalla}
-      facing={facing}
-      onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}>       
-      <StatusBar hidden={true} />
+    
+    // <CameraView
+    //   facing={facing}
+    //   onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+    <View
+        style={GlobalStyles.pantalla}>       
+        <StatusBar hidden={true} />
 
-      <View style={styles.overlay}>
+        <View style={GlobalStyles.bloqueLargoOscuro}></View>
 
-        <View style={styles.oscuro} />
+        <View style={media600.containerMedio}>
+          <View style={GlobalStyles.bloquePequenioOscuro}></View>
+          <View style={media600.bloquePequenioTransparente}></View>
+          <View style={GlobalStyles.bloquePequenioOscuro}></View>
+        </View>
+        <View style={GlobalStyles.bloqueLargoOscuro}></View>
 
-      <View style={styles.filacentral}>
-      <View style={styles.oscuro} />
-      <View style={styles.ventana}>
-          </View>
-          <View style={styles.oscuro} />
+        <View style={media600.containerEsquinas}>
+          <View style={GlobalStyles.esquinaRectangulo}></View>
+          <View style={GlobalStyles.esquinaRectangulo2}></View>
+          <View style={GlobalStyles.esquinaRectangulo3}></View>
+          <View style={GlobalStyles.esquinaRectangulo4}></View>
+        </View>
 
-          </View>
-          <View style={styles.oscuro} />
-          </View>
-
-          <Pressable style={styles.boton}><Text style={styles.texto}>Muestra tu QR aquí</Text></Pressable>
-
-        
-          <View style={styles.linea1}>
-          <View style={styles.esquinaRectangulo}></View>
-          <View style={styles.esquinaRectangulo2}></View>
-          </View>
-
-          <View style={styles.linea2}>
-          <View style={styles.esquinaRectangulo3}></View>
-          <View style={styles.esquinaRectangulo4}></View>
-          </View>
-
-    </CameraView>
+        <Pressable style={GlobalStyles.boton}><Text style={GlobalStyles.texto}>Muestra tu QR aquí</Text></Pressable>
+      </View>
+    // </CameraView>
     
   );
 }
 
-const styles = StyleSheet.create({
-  overlay: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    flexDirection: 'column',
-  },
-  oscuro: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-  },
-  filacentral: {
-    flexDirection: 'row',
-    height: 230, 
-  },
-  ventana: {
-    width: 230, 
-    height: '100%',
-    justifyContent: 'space-between',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  permissionText: {
-    fontSize: 18,
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-    pantalla: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        height: '100%',
-        width: '100%',
-    },
-    oscurecer: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      width: '100%',
-      borderColor: 'red',
-      borderWidth: 1,
-      backgroundColor: 'green',
-      overflow: 'hidden'
-    },
-
-    enlace: {
-        fontSize: 16,
-        textDecorationLine: 'underline',
-        color: 'blue'
-    },
-    boton: {
-      marginTop: -125,
-      transform: [{translateY: 50}]
-    },
-    texto:{
-      backgroundColor: '#434CB2',
-      paddingVertical: 10,
-      paddingHorizontal: 25,
-      color: 'white',
-      fontWeight: 'bold',
-      borderRadius: 50,
-      fontSize: 25,
-    },
-    linea1:{
-      flexDirection: 'row',
-      marginTop: -100,
-      transform: [{translateY: 85}]
-    },
-    linea2:{
-      flexDirection: 'row',
-      transform: [{translateY: 87}]
-
-    },
-    esquinaRectangulo:{
-      borderColor: 'white',
-      borderLeftWidth: 5,
-      borderTopWidth: 5,
-      width: 50,
-      height: 50,
-      margin: 75
-      },
-      esquinaRectangulo2:{
-        borderColor: 'white',
-        borderLeftWidth: 5,
-        borderTopWidth: 5,
-        width: 50,
-        height: 50,
-        margin: 75,
-        transform: [{rotate: '90deg'}],
-      },
-      esquinaRectangulo3:{
-        borderColor: 'white',
-        borderLeftWidth: 5,
-        borderTopWidth: 5,
-        width: 50,
-        height: 50,
-        margin: 75,
-        transform: [{rotate: '270deg'}],
-
-        },
-        esquinaRectangulo4:{
-          borderColor: 'white',
-          borderLeftWidth: 5,
-          borderTopWidth: 5,
-          width: 50,
-          height: 50,
-          transform: [{rotate: '180deg'}],
-          margin: 75
-        }
-});
