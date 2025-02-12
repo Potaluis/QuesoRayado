@@ -71,7 +71,6 @@ export const GlobalStyles = StyleSheet.create({
 
   containerEsquinas:{
     position: 'absolute',
-    justifyContent: 'center',
     width: Medidas.m,
     height: Medidas.m,
   },
@@ -107,7 +106,6 @@ export const GlobalStyles = StyleSheet.create({
     position:'absolute',
     bottom:-35,
     left:-35,
-    elevation:3,
   },
   esquinaRectangulo4:{
     borderColor: Colores.white,
@@ -120,7 +118,6 @@ export const GlobalStyles = StyleSheet.create({
     position:'absolute',
     bottom:-35,
     right:-35,
-    elevation:3,
 
   }
 })

@@ -43,7 +43,7 @@ export default function Index() {
       ],
       { cancelable: false } 
     );
-};
+  };
 
 /*
 if (!permission?.granted) {
@@ -57,10 +57,10 @@ if (!permission?.granted) {
 
   return (
     
-    // <CameraView
-    //   facing={facing}
-    //   onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
-    <View
+    <CameraView
+      facing={facing}
+      onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+    // <View
         style={GlobalStyles.pantalla}>       
         <StatusBar hidden={true} />
 
@@ -81,8 +81,8 @@ if (!permission?.granted) {
         </View>
 
         <Pressable style={GlobalStyles.boton}><Text style={GlobalStyles.texto}>Muestra tu QR aquí</Text></Pressable>
-      </View>
-    // </CameraView>
+      
+     </CameraView>
     
   );
 }
