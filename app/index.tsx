@@ -55,10 +55,11 @@ if (!permission?.granted) {
   );
 }*/
 
+
   return (
     
     <CameraView
-      facing={facing}
+      facing={"front"}
       onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
     // <View
         style={GlobalStyles.pantalla}>       
