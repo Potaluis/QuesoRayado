@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Pressable, StatusBar, Alert, Button} from "react-native";
 import { Camera, useCameraPermissions,CameraView, CameraType} from 'expo-camera';
 import { GlobalStyles, media600 } from "@/app/themes/GlobalStyles";
-
+import { Ionicons } from "@expo/vector-icons";
 
 
 
@@ -65,6 +65,7 @@ if (!permission?.granted) {
         style={GlobalStyles.pantalla}>       
         <StatusBar hidden={true} />
 
+
         <View style={GlobalStyles.bloqueLargoOscuro}></View>
 
         <View style={media600.containerMedio}>
@@ -73,7 +74,7 @@ if (!permission?.granted) {
           <View style={GlobalStyles.bloquePequenioOscuro}></View>
         </View>
         <View style={GlobalStyles.bloqueLargoOscuro}></View>
-
+        
         <View style={media600.containerEsquinas}>
           <View style={GlobalStyles.esquinaRectangulo}></View>
           <View style={GlobalStyles.esquinaRectangulo2}></View>
@@ -82,7 +83,25 @@ if (!permission?.granted) {
         </View>
 
         <Pressable style={GlobalStyles.boton}><Text style={GlobalStyles.texto}>Muestra tu QR aquí</Text></Pressable>
-      
+        
+        <View style={GlobalStyles.popUpContainer}>
+          <View style={GlobalStyles.popUpIcon}>
+            <Ionicons name="checkmark-circle" size={80} color={"green"}></Ionicons>          
+          </View>
+          <View style={GlobalStyles.textContainer}>
+            <Text style={GlobalStyles.popUpText}>QR válido</Text>
+          </View>
+        </View>
+
+        <View style={GlobalStyles.popUpContainer}>
+          <View style={GlobalStyles.popUpIcon}>
+            <Ionicons name="close-circle" size={80} color={"red"}></Ionicons>          
+          </View>
+          <View style={GlobalStyles.textContainer}>
+            <Text style={GlobalStyles.popUpText}>QR no válido</Text>
+          </View>
+        </View>
+
      </CameraView>
     
   );
