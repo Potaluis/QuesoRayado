@@ -1,8 +1,14 @@
 import { Slot, Stack } from "expo-router";
 import ScreenConfiguracion from './configuracion/index';
 import ScreenProductos from './productos/index';
+import { useFonts } from 'expo-font';
 
 export default function RootLayout() {
+  const [loaded] = useFonts({
+    Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
+    MontserratBold: require('../assets/fonts/Montserrat-Bold.ttf')
+  });
+  
   return (
     <Stack
       screenOptions={{

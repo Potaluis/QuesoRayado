@@ -31,7 +31,7 @@ export const GlobalStyles = StyleSheet.create({
   },
 
   popUpText:{
-    fontWeight: 'bold',
+    fontFamily: "MontserratBold",
     fontSize: 25,
   },
 
@@ -40,6 +40,7 @@ export const GlobalStyles = StyleSheet.create({
     width: (Medidas.m)/2,
     justifyContent: "center",
     alignItems: "center",
+    fontFamily: "MontserratBold",
   },
 
   container: {
@@ -79,6 +80,7 @@ export const GlobalStyles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 20,
     textAlign: 'center',
+    fontFamily: "Montserrat",
   },
 
   boton: {
@@ -95,7 +97,7 @@ export const GlobalStyles = StyleSheet.create({
 
   texto:{
     color: Colores.white,
-    fontWeight: 'bold',
+    fontFamily: "MontserratBold",
     fontSize: 25,
   },
 
