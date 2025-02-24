@@ -10,7 +10,37 @@ export const GlobalStyles = StyleSheet.create({
     height: '100%',
     width: '100%',
     overflow: 'hidden',
-},
+  },
+
+  popUpContainer:{
+    width: Medidas.m,
+    height: (Medidas.m)/4,
+    backgroundColor: Colores.white,
+    position: 'absolute',
+    borderRadius: 2000,
+    flexDirection: "row",
+    alignItems: "center",
+    transform: [{ scale: 0 }]  
+  },
+
+  popUpIcon:{
+    height: "100%",
+    width: (Medidas.m)/4,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  popUpText:{
+    fontWeight: 'bold',
+    fontSize: 25,
+  },
+
+  textContainer:{
+    height: "100%",
+    width: (Medidas.m)/2,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
   container: {
     flex: 1,
