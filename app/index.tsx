@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Pressable, StatusBar, Alert, Button} from "react-native";
 import { Camera, useCameraPermissions,CameraView, CameraType} from 'expo-camera';
 import { GlobalStyles, media600 } from "@/app/themes/GlobalStyles";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { auth, db } from "@/Firebaseconfig";
+import { collection, getDoc, getDocs, query } from "firebase/firestore";
 
 
 
@@ -12,10 +15,60 @@ type Prop = {
 };
 
 export default function Index() {
-
+  const coleccionUsuarios = collection(db,'Usuarios');
   const [permission,requestPermission] = useCameraPermissions();
   const [scanned,setScanned] = useState(false);
+  const [qr,setQr] = useState("");
   const [facing] = useState<CameraType>('front');
+  const[email,setEmail]= useState('adminuser@test.com');
+  const[password,setPassword]= useState('password');
+  const[usuarios,setUsuarios]= useState<any>([]);
+  const logIn = async ()=>{
+    try{
+      const user = await (signInWithEmailAndPassword(auth,email,password))
+    }catch(error:any){
+      console.log(error);
+      Alert.alert("Ha ocurrido un error al iniciar sesión",error.message)
+    }
+  }
+  const cargarDatos = async () => {
+    if (auth.currentUser) {
+      const q = query (coleccionUsuarios);
+      const datos = await getDocs(q);
+      setUsuarios(datos.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      console.log(usuarios);
+    }
+  }
+  useEffect(()=>{logIn()},[])
+  useEffect(()=>{
+    cargarDatos()
+    if(scanned){
+      comprobarQR()
+    }
+    setInterval(()=>{setScanned(false);},5000)
+  },[scanned])
+
+  const comprobarQR=()=>{
+    let correcto:boolean=false;
+    console.log(qr)
+
+    usuarios.forEach(function(element:any) {
+      if(qr==element.email){
+        correcto=true;
+        console.log(qr)
+        console.log(element.email);
+      }
+    });
+    if(correcto)
+      {
+        alert("correcto")
+      }
+      else
+      {
+        alert("incorrecto")
+      }
+  }
+
   /*
 
   useEffect(()=>{
@@ -31,18 +84,13 @@ export default function Index() {
 */
 
   const handleBarCodeScanned = ({ type, data }: Prop) => {
+    
+    setQr(data);
     setScanned(true);
-    Alert.alert(
-      `Código ${type} Scaneado`, 
-      `Datos: ${data}`,      
-      [
-        {
-          text: 'OK',      
-          onPress: () => setScanned(false),  
-        }
-      ],
-      { cancelable: false } 
-    );
+    
+    //Reinicaimos los valores para el próximo escaneo
+
+    
   };
 
 /*
