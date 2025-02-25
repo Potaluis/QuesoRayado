@@ -13,8 +13,8 @@ export const GlobalStyles = StyleSheet.create({
   },
 
   popUpContainer:{
-    width: Medidas.m,
-    height: (Medidas.m)/4,
+    width: Medidas.l*4/3,
+    height: (Medidas.l)/3,
     backgroundColor: Colores.white,
     position: 'absolute',
     borderRadius: 2000,
@@ -23,8 +23,8 @@ export const GlobalStyles = StyleSheet.create({
     transform: [{ scale: 0 }]  
   },
   popUpContainerIncorrecto:{
-    width: Medidas.m,
-    height: (Medidas.m)/4,
+    width: Medidas.l*4/3,
+    height: (Medidas.l)/3,
     backgroundColor: Colores.white,
     position: 'absolute',
     borderRadius: 2000,
@@ -33,8 +33,8 @@ export const GlobalStyles = StyleSheet.create({
     transform: [{ scale: 0 }]  
   },
   popUpIcon:{
-    height: "100%",
-    width: (Medidas.m)/4,
+    height:(Medidas.l)/3,
+    width: (Medidas.l)/3,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -46,7 +46,7 @@ export const GlobalStyles = StyleSheet.create({
 
   textContainer:{
     height: "100%",
-    width: (Medidas.m)/2,
+    width: (Medidas.l),
     justifyContent: "center",
     alignItems: "center",
     fontFamily: "MontserratBold",
@@ -70,7 +70,7 @@ export const GlobalStyles = StyleSheet.create({
     flexDirection:'row',
     justifyContent: 'center',
     width:'100%',
-    height:Medidas.m
+    height:Medidas.l
   },
 
   bloquePequenioOscuro:{
@@ -81,7 +81,7 @@ export const GlobalStyles = StyleSheet.create({
   },
 
   bloquePequenioTransparente:{
-    width: Medidas.m,
+    width: Medidas.l,
     height: '100%',
   },
 
@@ -112,8 +112,8 @@ export const GlobalStyles = StyleSheet.create({
 
   containerEsquinas:{
     position: 'absolute',
-    width: Medidas.m,
-    height: Medidas.m,
+    width: Medidas.l,
+    height: Medidas.l,
   },
   esquinaRectangulo:{
     borderColor: Colores.white,

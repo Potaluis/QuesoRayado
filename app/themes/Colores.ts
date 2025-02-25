@@ -9,7 +9,7 @@ export const Colores = {
 export const Medidas = {
   s: 240,
   m: 330,
-  l: 490,
+  l: 400,
 } as const
 
 

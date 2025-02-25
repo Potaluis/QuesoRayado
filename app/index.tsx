@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Pressable, StatusBar, Alert, Button} from "react-native";
 import { Camera, useCameraPermissions,CameraView, CameraType} from 'expo-camera';
-import { GlobalStyles, media600 } from "@/app/themes/GlobalStyles";
+import { GlobalStyles } from "@/app/themes/GlobalStyles";
 import { Ionicons } from "@expo/vector-icons";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { auth, db } from "@/Firebaseconfig";
@@ -24,6 +24,10 @@ export default function Index() {
   const[email,setEmail]= useState('adminuser@test.com');
   const[password,setPassword]= useState('password');
   const[usuarios,setUsuarios]= useState<any>([]);
+
+  const [scale, setScale] = useState(0); // Estado para manejar el scale
+  const [scaleIncorrecto, setScaleIncorrecto] = useState(0); // Para el popUp de error
+
   const logIn = async ()=>{
     try{
       const user = await (signInWithEmailAndPassword(auth,email,password))
@@ -63,16 +67,20 @@ export default function Index() {
     });
     if(correcto)
       {
-        GlobalStyles.popUpContainer.transform=[{ scale: 1 }];
-        alert("correcto")
-        setInterval(()=>{setScanned(false);GlobalStyles.popUpContainer.transform=[{ scale: 0 }];},3000)
-      }
+        setScale(1);
+        // alert("correcto")
+        setTimeout(() => {
+          setScale(0); // Oculta después de 3 segundos
+          setScanned(false); // Permite nuevos escaneos
+        }, 3000);      }
       else
       {
-        GlobalStyles.popUpContainerIncorrecto.transform=[{ scale: 1 }];
-        alert("incorrecto")
-        setInterval(()=>{setScanned(false);GlobalStyles.popUpContainerIncorrecto.transform=[{ scale: 0 }]},3000)
-      }
+        setScaleIncorrecto(1);
+        // alert("incorrecto")
+        setTimeout(() => {
+          setScaleIncorrecto(0); // Oculta después de 3 segundos
+          setScanned(false); // Permite nuevos escaneos
+        }, 3000);      }
   }
 
   /*
@@ -89,11 +97,26 @@ export default function Index() {
   },[])
 */
 
-  const handleBarCodeScanned = ({ type, data }: Prop) => {
+  useEffect(() => {
+    if (scanned && usuarios.length > 0) {
+      comprobarQR();
+    }
+  }, [scanned, usuarios]);
+
+  const handleBarCodeScanned = async ({ type, data }: Prop) => {
+    
+    // setQr(data);
+    // setScanned(true);
     
     setQr(data);
-    setScanned(true);
-    
+
+    if (usuarios.length > 0) {
+      setScanned(true);
+    } else {
+      await cargarDatos(); 
+      setScanned(true);
+    }
+
     //Reinicaimos los valores para el próximo escaneo
 
     
@@ -122,39 +145,39 @@ if (!permission?.granted) {
 
         <View style={GlobalStyles.bloqueLargoOscuro}></View>
 
-        <View style={media600.containerMedio}>
+        <View style={GlobalStyles.containerMedio}>
           <View style={GlobalStyles.bloquePequenioOscuro}></View>
-          <View style={media600.bloquePequenioTransparente}></View>
+          <View style={GlobalStyles.bloquePequenioTransparente}></View>
           <View style={GlobalStyles.bloquePequenioOscuro}></View>
         </View>
         <View style={GlobalStyles.bloqueLargoOscuro}></View>
         
-        <View style={media600.containerEsquinas}>
+        <View style={GlobalStyles.containerEsquinas}>
           <View style={GlobalStyles.esquinaRectangulo}></View>
           <View style={GlobalStyles.esquinaRectangulo2}></View>
           <View style={GlobalStyles.esquinaRectangulo3}></View>
           <View style={GlobalStyles.esquinaRectangulo4}></View>
         </View>
 
-        <Pressable style={GlobalStyles.boton}><Text style={GlobalStyles.texto}>Muestra tu QR aquí</Text></Pressable>
         
-        <View style={GlobalStyles.popUpContainer}>
+        <View style={[GlobalStyles.popUpContainer, { transform: [{ scale: scale }] }]}>
           <View style={GlobalStyles.popUpIcon}>
-            <Ionicons name="checkmark-circle" size={80} color={"green"}></Ionicons>          
+            <Ionicons name="checkmark-circle" size={120} color={"green"}></Ionicons>          
           </View>
           <View style={GlobalStyles.textContainer}>
             <Text style={GlobalStyles.popUpText}>QR válido</Text>
           </View>
         </View>
 
-        <View style={GlobalStyles.popUpContainerIncorrecto}>
+        <View style={[GlobalStyles.popUpContainerIncorrecto, { transform: [{ scale: scaleIncorrecto }] }]}>
           <View style={GlobalStyles.popUpIcon}>
-            <Ionicons name="close-circle" size={80} color={"red"}></Ionicons>          
+            <Ionicons name="close-circle" size={120} color={"red"}></Ionicons>          
           </View>
           <View style={GlobalStyles.textContainer}>
             <Text style={GlobalStyles.popUpText}>QR no válido</Text>
           </View>
         </View>
+        <Pressable style={GlobalStyles.boton}><Text style={GlobalStyles.texto}>Muestra tu QR aquí</Text></Pressable>
 
      </CameraView>
     
