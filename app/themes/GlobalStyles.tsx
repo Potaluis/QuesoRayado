@@ -22,7 +22,16 @@ export const GlobalStyles = StyleSheet.create({
     alignItems: "center",
     transform: [{ scale: 0 }]  
   },
-
+  popUpContainerIncorrecto:{
+    width: Medidas.m,
+    height: (Medidas.m)/4,
+    backgroundColor: Colores.white,
+    position: 'absolute',
+    borderRadius: 2000,
+    flexDirection: "row",
+    alignItems: "center",
+    transform: [{ scale: 0 }]  
+  },
   popUpIcon:{
     height: "100%",
     width: (Medidas.m)/4,

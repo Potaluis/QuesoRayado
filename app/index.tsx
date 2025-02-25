@@ -36,17 +36,18 @@ export default function Index() {
     if (auth.currentUser) {
       const q = query (coleccionUsuarios);
       const datos = await getDocs(q);
-      setUsuarios(datos.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      await setUsuarios(datos.docs.map((doc) => ({...doc.data(), id: doc.id})));
       console.log(usuarios);
     }
   }
   useEffect(()=>{logIn()},[])
   useEffect(()=>{
-    cargarDatos()
-    if(scanned){
+    cargarDatos().then(()=>{
+      if(scanned){
       comprobarQR()
     }
-    setInterval(()=>{setScanned(false);},5000)
+    }
+    )
   },[scanned])
 
   const comprobarQR=()=>{
@@ -62,11 +63,15 @@ export default function Index() {
     });
     if(correcto)
       {
+        GlobalStyles.popUpContainer.transform=[{ scale: 1 }];
         alert("correcto")
+        setInterval(()=>{setScanned(false);GlobalStyles.popUpContainer.transform=[{ scale: 0 }];},3000)
       }
       else
       {
+        GlobalStyles.popUpContainerIncorrecto.transform=[{ scale: 1 }];
         alert("incorrecto")
+        setInterval(()=>{setScanned(false);GlobalStyles.popUpContainerIncorrecto.transform=[{ scale: 0 }]},3000)
       }
   }
 
@@ -142,7 +147,7 @@ if (!permission?.granted) {
           </View>
         </View>
 
-        <View style={GlobalStyles.popUpContainer}>
+        <View style={GlobalStyles.popUpContainerIncorrecto}>
           <View style={GlobalStyles.popUpIcon}>
             <Ionicons name="close-circle" size={80} color={"red"}></Ionicons>          
           </View>
