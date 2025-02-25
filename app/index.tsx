@@ -165,7 +165,10 @@ if (!permission?.granted) {
             <Ionicons name="checkmark-circle" size={120} color={"green"}></Ionicons>          
           </View>
           <View style={GlobalStyles.textContainer}>
-            <Text style={GlobalStyles.popUpText}>QR válido</Text>
+            {/* <Text style={GlobalStyles.popUpText}>QR válido</Text>  */}
+
+            <Text style={GlobalStyles.popUpText}>Bienvenido {qr.split("@")[0]}!</Text>
+
           </View>
         </View>
 
@@ -174,10 +177,10 @@ if (!permission?.granted) {
             <Ionicons name="close-circle" size={120} color={"red"}></Ionicons>          
           </View>
           <View style={GlobalStyles.textContainer}>
-            <Text style={GlobalStyles.popUpText}>QR no válido</Text>
+            <Text style={GlobalStyles.popUpText}>QR no válido </Text>
           </View>
         </View>
-        <Pressable style={GlobalStyles.boton}><Text style={GlobalStyles.texto}>Muestra tu QR aquí</Text></Pressable>
+        <Pressable style={GlobalStyles.boton}><Text style={GlobalStyles.texto}>Muestra tu QR </Text></Pressable>
 
      </CameraView>
     
